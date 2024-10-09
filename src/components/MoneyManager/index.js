@@ -30,8 +30,8 @@ class MoneyManager extends Component {
     const deletedTransaction = transactionsList.filter(
       eachTransaction => eachTransaction.id === id,
     )
-    console.log(deletedTransaction.amount)
-
+    console.log(deletedTransaction)
+    console.log(deletedTransaction[0].amount)
     const filteredTransactionsList = transactionsList.filter(
       eachTransaction => eachTransaction.id !== id,
     )
@@ -39,14 +39,15 @@ class MoneyManager extends Component {
       this.setState(prevState => ({
         transactionsList: filteredTransactionsList,
         totalIncome:
-          parseInt(prevState.totalIncome) - parseInt(deletedTransaction.amount),
+          parseInt(prevState.totalIncome) -
+          parseInt(deletedTransaction[0].amount),
       }))
     } else {
       this.setState(prevState => ({
         transactionsList: filteredTransactionsList,
         totalExpenses:
           parseInt(prevState.totalExpenses) -
-          parseInt(deletedTransaction.amount),
+          parseInt(deletedTransaction[0].amount),
       }))
     }
   }
@@ -142,7 +143,7 @@ class MoneyManager extends Component {
                 onChange={this.onChangeTransactionType}
               >
                 {transactionTypeOptions.map(eachType => (
-                  <option key={eachType.optionId} value={eachType.optionId}>
+                  <option key={eachType.optionId} value={eachType.displayText}>
                     {eachType.displayText}
                   </option>
                 ))}
