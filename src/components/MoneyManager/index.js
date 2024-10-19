@@ -35,7 +35,7 @@ class MoneyManager extends Component {
     const filteredTransactionsList = transactionsList.filter(
       eachTransaction => eachTransaction.id !== id,
     )
-    if (deletedTransaction.transactionType === 'Income') {
+    if (deletedTransaction.transactionType === 'INCOME') {
       this.setState(prevState => ({
         transactionsList: filteredTransactionsList,
         totalIncome:
@@ -76,7 +76,7 @@ class MoneyManager extends Component {
       transactionType,
     }
 
-    if (transactionType === 'Income') {
+    if (transactionType === 'INCOME') {
       this.setState(prevState => ({
         transactionsList: [...prevState.transactionsList, newTransaction],
         totalIncome: prevState.totalIncome + parseInt(amount),
@@ -143,7 +143,7 @@ class MoneyManager extends Component {
                 onChange={this.onChangeTransactionType}
               >
                 {transactionTypeOptions.map(eachType => (
-                  <option key={eachType.optionId} value={eachType.displayText}>
+                  <option key={eachType.optionId} value={eachType.optionId}>
                     {eachType.displayText}
                   </option>
                 ))}
